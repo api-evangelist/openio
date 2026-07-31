@@ -1,8 +1,30 @@
 aid: openio
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openio.png
 name: OpenIO
-description: 'OpenIO is a company surfaced as a portfolio company of partech and added to the API Evangelist
-  network as a stub for enrichment. Sector: Infrastructure SaaS. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  OpenIO SDS is an open-source, software-defined object storage platform for
+  building hyper-scalable, high-performance storage infrastructures. It stores
+  data across commodity hardware and exposes it through an Amazon S3-compatible
+  gateway and an OpenStack Swift-compatible gateway, backed by native RAWX,
+  Conscience, Directory, Container, Content and Account services. Developers
+  integrate via first-party Python, C and Java client libraries and the `openio`
+  command-line interface, or with any standard AWS S3 / Swift SDK and CLI. The
+  S3 gateway supports Signature v2/v4, versioning, lifecycle, CORS, tagging,
+  ACLs and multipart uploads, plus a documented subset of AWS IAM (paid plans).
+  OpenIO was founded as a French storage company backed by Partech and acquired
+  by OVHcloud in 2020; the SDS project remains publicly documented open source.
 url: https://raw.githubusercontent.com/api-evangelist/openio/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +34,32 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Infrastructure Saas
-apis: []
+- Object Storage
+- S3
+- Cloud Storage
+- Open Source
+- OpenStack Swift
+- Storage
+apis:
+- name: OpenIO SDS S3-Compatible Object Storage API
+  description: >-
+    Amazon S3-compatible object storage gateway exposed by OpenIO SDS, with an
+    OpenStack Swift-compatible gateway alongside. Self-hosted software, so the
+    API base URL is deployment-specific.
+  humanURL: https://docs.openio.io/latest/source/arch-design/s3_compliancy.html
+  tags:
+  - Object Storage
+  - S3
+  - Swift
+  properties:
+  - type: Documentation
+    url: https://docs.openio.io/latest/
+  - type: APIReference
+    url: https://docs.openio.io/latest/source/arch-design/s3_compliancy.html
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +68,34 @@ maintainers:
 common:
 - type: Website
   url: https://www.openio.io/
+- type: Documentation
+  url: https://docs.openio.io/latest/
+- type: APIReference
+  url: https://docs.openio.io/latest/source/arch-design/s3_compliancy.html
+- type: GettingStarted
+  url: https://docs.openio.io/latest/
+- type: GitHubOrganization
+  url: https://github.com/open-io
+- type: Authentication
+  url: authentication/openio-authentication.yml
+- type: Conformance
+  url: conformance/openio-conformance.yml
+- type: CLI
+  url: cli/openio-cli.yml
+- type: Packages
+  url: packages/openio-packages.yml
+- type: SDKs
+  url: packages/openio-packages.yml
+- type: Lifecycle
+  url: lifecycle/openio-lifecycle.yml
+- type: Conventions
+  url: conventions/openio-conventions.yml
+- type: LLMsTxt
+  url: llms/openio-llms.txt
+- type: DomainSecurity
+  url: security/openio-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v1

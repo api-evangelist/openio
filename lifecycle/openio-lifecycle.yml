@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/open-io/oio-sds + https://docs.openio.io/
+description: >-
+  Release/versioning posture for OpenIO SDS. Releases follow a CalVer-style
+  YY.MM scheme (e.g. 20.04, 19.10, 19.04) published as tags/releases on the
+  open-source repository. OpenIO was acquired by OVHcloud in 2020; SDS remains
+  the documented open-source object storage platform. No dedicated status page
+  or formal deprecation-policy document is published for the self-hosted
+  software.
+versioning:
+  scheme: calver (YY.MM)
+  current: '20.04'
+  recent: ['20.04', '19.10', '19.04']
+  source: https://github.com/open-io/oio-sds/releases
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy; self-hosted software versioned by release.
+sla: null
+status_page: null
+github_org: https://github.com/open-io
+deprecated_operations: []

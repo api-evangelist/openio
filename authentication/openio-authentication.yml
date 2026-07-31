@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.openio.io/latest/source/arch-design/iam.html
+docs: https://docs.openio.io/latest/source/arch-design/iam.html
+description: >-
+  OpenIO SDS exposes object storage through an S3-compatible gateway and an
+  OpenStack Swift-compatible gateway. Authentication is therefore whatever the
+  chosen gateway protocol defines: AWS Signature (v2 and v4) for the S3 gateway,
+  and Swift auth (Keystone / TempAuth) for the Swift gateway. There is no
+  provider-published OpenAPI, so this profile is derived from the documentation
+  rather than from a machine-readable security scheme.
+summary:
+  types: [awsSignature, swiftAuth]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+  - name: s3-aws-signature-v4
+    type: awsSignature
+    scheme: aws-sigv4
+    detail: >-
+      S3 gateway authenticates requests with AWS Signature Version 4 (and
+      legacy Signature Version 2). Both path-style and host-style (virtual
+      hosted) bucket addressing are supported.
+    credentials: S3 access key id + secret access key
+    sources: [https://docs.openio.io/latest/source/arch-design/s3_compliancy.html]
+  - name: swift-auth
+    type: swiftAuth
+    scheme: keystone-or-tempauth
+    detail: >-
+      Swift gateway authenticates via OpenStack Keystone tokens or TempAuth,
+      per the OpenStack Swift API it is compatible with.
+    sources: [https://docs.openio.io/latest/source/user-guide/swiftapi.html]
+iam:
+  available: true
+  plan: paid
+  model: subset of AWS IAM applied at the S3 gateway
+  policy_scope: user policies only (bucket/resource policies not supported)
+  supported_actions:
+    - CreateBucket
+    - DeleteBucket
+    - GetBucketLocation
+    - ListBucket
+    - ListBucketMultipartUploads
+    - GetObject
+    - PutObject
+    - DeleteObject
+    - AbortMultipartUpload
+    - ListMultipartUploadParts
+  condition_keys: [s3:prefix, s3:delimiter, s3:max-keys]
+  operators: [StringEquals, StringLike, StringNotEquals, StringNotLike]
+  admin_command: openio-admin iam set-user-policy
+  docs: https://docs.openio.io/latest/source/arch-design/iam.html
+notes: >-
+  OpenIO SDS is self-hosted software (acquired by OVHcloud in 2020); the S3/Swift
+  gateway endpoint is deployment-specific, so there is no single hosted base URL.

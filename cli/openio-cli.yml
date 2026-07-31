@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.openio.io/latest/source/user-guide/openiocli.html
+description: >-
+  OpenIO SDS ships first-party command-line tooling. The end-user `openio` CLI
+  drives the native object storage API (accounts, containers, objects, cluster);
+  the `openio-admin` CLI drives administration including S3 IAM. The platform is
+  additionally compatible with the standard AWS S3 CLI and OpenStack Swift CLI
+  against its respective gateways.
+clis:
+  - name: openio
+    role: end-user object storage CLI
+    docs: https://docs.openio.io/latest/source/user-guide/openiocli.html
+    invocation: openio [global-options] <resource> <action> [arguments]
+    command_groups:
+      - name: account
+        summary: Track storage usage and view account information.
+        examples: ["openio account show my_account"]
+      - name: container
+        summary: Create, list and manage storage containers.
+        examples:
+          - openio container create my_container
+          - openio container create my_container --storage-policy=TWOCOPIES
+      - name: object
+        summary: Upload, download, list and delete objects.
+        examples:
+          - openio object create my_container test.txt
+          - openio object list my_container --prefix foo --delimiter / --limit 100
+      - name: cluster
+        summary: Namespace configuration, service listing, score/unlock management.
+        examples:
+          - openio cluster show
+          - openio cluster list
+    configuration:
+      env: [OIO_NS, OIO_ACCOUNT, OIO_PROXYD_URL]
+      flags: [--oio-ns, --oio-account]
+      files: ["/etc/oio/sds", "~/.oio"]
+  - name: openio-admin
+    role: administration CLI (includes S3 IAM management)
+    docs: https://docs.openio.io/latest/source/arch-design/iam.html
+    examples:
+      - openio-admin iam set-user-policy
+compatible_clis:
+  - name: aws (AWS S3 CLI)
+    against: S3 gateway
+    docs: https://docs.openio.io/latest/source/user-guide/awscli.html
+  - name: swift (OpenStack Swift CLI)
+    against: Swift gateway
+    docs: https://docs.openio.io/latest/source/user-guide/swiftcli.html

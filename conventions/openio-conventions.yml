@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.openio.io/latest/source/user-guide/openiocli.html + S3/Swift compliance docs
+description: >-
+  Cross-cutting request/response conventions for consuming OpenIO SDS. Because
+  OpenIO exposes storage primarily through S3- and Swift-compatible gateways,
+  the runtime semantics are largely those of the S3 and Swift protocols rather
+  than a bespoke REST envelope. This profile captures what the docs make
+  explicit; there is no provider-published OpenAPI.
+base_url: deployment-specific (self-hosted S3/Swift gateway; no single hosted host)
+api_style: >-
+  Amazon S3-compatible REST (XML) gateway and OpenStack Swift-compatible REST
+  gateway, plus a native oio-sds object storage API driven by the openio CLI /
+  proxy service.
+authentication:
+  s3: AWS Signature v2/v4 (access key + secret); path-style and host-style addressing
+  swift: Keystone / TempAuth
+  detail: authentication/openio-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key contract is documented. S3 PUT/DELETE are naturally
+    idempotent at the protocol level, but OpenIO publishes no idempotency-key
+    header, so no Idempotency pointer is emitted.
+pagination:
+  style: marker-based (S3 list-objects style)
+  request_params:
+    prefix: filter keys by prefix
+    delimiter: group keys (folder emulation)
+    marker: continue listing after a key
+    limit: max keys per page
+  note: Mirrors S3 ListObjects semantics; exposed via CLI --prefix/--delimiter/--marker/--limit.
+error_envelope:
+  s3: Amazon S3 XML error responses (Code / Message / RequestId)
+  swift: OpenStack Swift error responses
+  detail: errors — protocol-level (S3/Swift), no RFC 9457 problem+json
+rate_limiting:
+  documented: false
+versioning:
+  detail: lifecycle/openio-lifecycle.yml
+cross_links:
+  authentication: authentication/openio-authentication.yml
+  conformance: conformance/openio-conformance.yml
+  lifecycle: lifecycle/openio-lifecycle.yml

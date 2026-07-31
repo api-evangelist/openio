@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.openio.io/latest/source/arch-design/s3_compliancy.html
+description: >-
+  Cross-cutting standards OpenIO SDS 20.04 conforms to. OpenIO's value
+  proposition is protocol compatibility: it presents object storage through an
+  Amazon S3-compatible gateway and an OpenStack Swift-compatible gateway, plus a
+  documented subset of AWS IAM. Support is partial and enumerated in the S3
+  compliance reference.
+standards:
+  - id: s3-api
+    conforms: true
+    partial: true
+    evidence: >-
+      S3 gateway supports AWS Signature v2 and v4, path-style and host-style
+      addressing, bucket versioning/lifecycle/CORS/tagging/ACLs, object CRUD +
+      ACLs + tagging + copy + torrent, and the full multipart upload workflow.
+    unsupported:
+      - bucket encryption
+      - bucket policies
+      - replication configuration
+      - website hosting
+      - object restore
+      - POST object
+    docs: https://docs.openio.io/latest/source/arch-design/s3_compliancy.html
+  - id: openstack-swift-api
+    conforms: true
+    partial: true
+    evidence: Swift-compatible gateway and Swift CLI/API support documented.
+    docs: https://docs.openio.io/latest/source/user-guide/swiftapi.html
+  - id: aws-iam
+    conforms: true
+    partial: true
+    evidence: >-
+      Documented subset of AWS IAM at the S3 gateway; user policies only, with a
+      fixed set of S3 actions, condition keys (s3:prefix/s3:delimiter/s3:max-keys)
+      and string operators.
+    docs: https://docs.openio.io/latest/source/arch-design/iam.html
+  - id: oauth2
+    conforms: false
+    evidence: No OAuth2; gateways use AWS Signature and Swift auth.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: S3/Swift XML error envelopes, not application/problem+json.

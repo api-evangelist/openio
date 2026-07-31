@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: probed
+source: live probes on 2026-07-20
+host: https://docs.openio.io
+note: >-
+  www.openio.io failed the TLS handshake (site effectively defunct after the
+  OVHcloud acquisition); docs.openio.io is a static docs site with no
+  .well-known surface. No document returned 200, so nothing was saved and no
+  WellKnown pointer is wired. Absence recorded for idempotent re-runs.
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

@@ -1,0 +1,34 @@
+# OpenIO
+
+> OpenIO SDS is an open-source, software-defined object storage platform for building hyper-scalable, high-performance storage infrastructures. It exposes data through an Amazon S3-compatible gateway and an OpenStack Swift-compatible gateway, with native Python, C and Java client libraries and an `openio` command-line interface. OpenIO was acquired by OVHcloud in 2020; the SDS project remains publicly documented.
+
+## APIs
+- [S3-Compatible Object Storage API](https://docs.openio.io/latest/source/arch-design/s3_compliancy.html): Amazon S3-compatible gateway (Signature v2/v4, versioning, lifecycle, CORS, tagging, ACLs, multipart).
+- [OpenStack Swift API](https://docs.openio.io/latest/source/user-guide/swiftapi.html): Swift-compatible gateway.
+- [Native oio-sds service APIs](https://docs.openio.io/latest/): RAWX, Conscience, Directory, Container, Content, Account, Reverse-Directory REST services.
+
+## Docs
+- [Documentation home](https://docs.openio.io/latest/)
+- [Identity and Access Management (IAM)](https://docs.openio.io/latest/source/arch-design/iam.html)
+- [S3 Compliance reference](https://docs.openio.io/latest/source/arch-design/s3_compliancy.html)
+- [Python API example](https://docs.openio.io/latest/source/sdk-guide/python_example.html)
+- [C API example](https://docs.openio.io/latest/source/sdk-guide/c_example.html)
+- [Java API example](https://docs.openio.io/latest/source/sdk-guide/java_example.html)
+
+## Tools
+- [openio end-user CLI](https://docs.openio.io/latest/source/user-guide/openiocli.html)
+- [AWS S3 CLI compatibility](https://docs.openio.io/latest/source/user-guide/awscli.html)
+- [OpenStack Swift CLI compatibility](https://docs.openio.io/latest/source/user-guide/swiftcli.html)
+
+## Source
+- [GitHub organization (open-io)](https://github.com/open-io)
+- [oio-sds core repository](https://github.com/open-io/oio-sds)
+
+## Enrichment artifacts (API Evangelist)
+- authentication/openio-authentication.yml
+- conformance/openio-conformance.yml
+- cli/openio-cli.yml
+- packages/openio-packages.yml
+- lifecycle/openio-lifecycle.yml
+- conventions/openio-conventions.yml
+- security/openio-domain-security.yml

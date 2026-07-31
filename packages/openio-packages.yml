@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.openio.io/latest/ (SDK guide) + https://github.com/open-io
+description: >-
+  First-party client libraries for OpenIO SDS. The clients are distributed with
+  the open-source source tree (GitHub org open-io) and documented in the SDK
+  guide rather than as pre-built registry packages — there is no `oio` package
+  on PyPI (verified 404 on 2026-07-20); the Python client is installed from the
+  oio-sds source tree. S3 gateway consumers may alternatively use any standard
+  AWS S3 SDK.
+packages:
+  - language: python
+    registry: source
+    name: oio
+    url: https://github.com/open-io/oio-sds
+    install: pip install . (from the oio-sds source tree)
+    official: true
+    docs: https://docs.openio.io/latest/source/sdk-guide/python_example.html
+  - language: c
+    registry: source
+    name: oio-sds C client
+    url: https://github.com/open-io/oio-sds
+    official: true
+    docs: https://docs.openio.io/latest/source/sdk-guide/c_example.html
+  - language: java
+    registry: source
+    name: oio-api-java
+    url: https://github.com/open-io/oio-api-java-doc
+    official: true
+    docs: https://docs.openio.io/latest/source/sdk-guide/java_example.html
+notes: >-
+  The S3-compatible gateway also works with any third-party AWS S3 SDK
+  (boto3, aws-sdk-js, aws-sdk-java, etc.); those are not first-party to OpenIO
+  and are not listed here as official.
